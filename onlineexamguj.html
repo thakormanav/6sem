@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online MCQ Exam</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 25px;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      padding: 20PX;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-image: url(https://th.bing.com/th/id/OIP.u89nCjfWHoMBz4QlK5zfzAHaE7?w=231&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7);
+
+    }
+
+    .mainbtn {
+      font-size: 25px;
+      border-radius: 5px;
+      border: none;
+      color: black;
+      background-color: rgb(68, 255, 0);
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .mainbtn:hover {
+      background-color: rgb(13, 7, 176);
+    }
+
+    .btn{
+  color: rgb(5, 5, 6);
+  background-color: plum;
+  border: 1px sollid plum;
+  border-radius: 5px;
+  box-shadow: 0 0 1px black;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+    h1 {
+      font-size: 75px;
+      color: rgba(2, 136, 238, 0.947);
+    }
+
+    span {
+      color: rgb(0, 0, 0);
+    }
+
+    h6 {
+      color: rgba(238, 2, 2, 0.947);
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    label {
+      font-size: 18px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      form {
+        max-width: 100%;
+        padding: 20px;
+      }
+    }
+  </style>
+
+
+  <script>
+    function startRedirectCountdown(seconds) {
+      let countdownElement = document.getElementById("countdown");
+      let interval = setInterval(function () {
+        countdownElement.textContent = seconds;
+        seconds--;
+        if (seconds < 0) {
+          clearInterval(interval);
+          window.location.href = "thankyou.html"; // Change to your target URL
+        }
+      }, 1000);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      startRedirectCountdown(60); // Change the countdown duration as needed
+    });
+  </script>
+
+
+  
+
+</head>
+
+<body>
+
+
+
+
+  <h1>Online MCQ Exam</h1>
+  <h6> NOTE:- * THIS PAGE WILL CLOSE AFTER <span id="countdown">60</span> sec...*</h6>
+  <br>
+
+  <a href="onlineexameng.html" ><button class="btn">English</button></a>
+  <a href="onlineexamhindi.html"><button class="btn">hindi</button></a>
+  <a href="onlineexamguj.html" ><button class="btn">Gujrati</button></a>
+  <div class="question en" style="display:block;">
+    <form id="mcqForm">
+      <!-- Question 1 -->
+
+      <br>
+
+
+  <div class="question hi" style="display:block;">
+
+    <p>1. ભારતનું રાષ્ટ્રીય પક્ષી કયું છે?</p>
+    <label><input type="radio" name="q1" value="a"> a) મોર 🦚 </label>
+    <label><input type="radio" name="q1" value="b"> b) તોતો 🦜</label>
+    <label><input type="radio" name="q1" value="c"> c) કાગડો 🐦</label>
+
+    <p>2. દુનિયામાં કુલ કેટલા ખંડ છે?</p>
+    <label><input type="radio" name="q2" value="a"> a) 5</label>
+    <label><input type="radio" name="q2" value="b"> b) 7</label>
+    <label><input type="radio" name="q2" value="c"> c) 6</label>
+
+    <p>3. ભારતનું રાષ્ટ્રગાન કોણે લખ્યું?</p>
+    <label><input type="radio" name="q3" value="a"> a) રવીન્દ્રનાથ ટાગોર</label>
+    <label><input type="radio" name="q3" value="b"> b) મહાત્મા ગાંધી</label>
+    <label><input type="radio" name="q3" value="c"> c) સુભાષચંદ્ર બોઝ</label>
+
+    <p>4. આપણા સૌરમંડળનો સૌથી નાનો ગ્રહ કયો છે?</p>
+    <label><input type="radio" name="q4" value="a"> a) શુક્ર</label>
+    <label><input type="radio" name="q4" value="b"> b) બુધ</label>
+    <label><input type="radio" name="q4" value="c"> c) મંગળ</label>
+
+    <p>5. ભારતની સૌથી લાંબી નદી કઈ છે?</p>
+    <label><input type="radio" name="q5" value="a"> a) યમુના</label>
+    <label><input type="radio" name="q5" value="b"> b) ગંગા</label>
+    <label><input type="radio" name="q5" value="c"> c) બ્રહ્મપુત્ર</label>
+
+    <p>6. ગુજરાતની રાજધાની શું છે?</p>
+    <label><input type="radio" name="q6" value="a"> a) અમદાવાદ</label>
+    <label><input type="radio" name="q6" value="b"> b) સુરત</label>
+    <label><input type="radio" name="q6" value="c"> c) ગાંધીનગર</label>
+
+    <p>7. ઈન્દ્રધનુષમાં કેટલા રંગો હોય છે? 🌈</p>
+    <label><input type="radio" name="q7" value="a"> a) 5</label>
+    <label><input type="radio" name="q7" value="b"> b) 7</label>
+    <label><input type="radio" name="q7" value="c"> c) 9</label>
+
+    <p>8. ટેલિફોનનું શોધક કોણ હતું?</p>
+    <label><input type="radio" name="q8" value="a"> a) અલેક્ઝાન્ડર ગ્રાહમ બેલ</label>
+    <label><input type="radio" name="q8" value="b"> b) થોમસ એડિસન</label>
+    <label><input type="radio" name="q8" value="c"> c) આલ્બર્ટ આઈન્સ્ટાઈન</label>
+
+    <p>9. અમેરિકાની મુદ્રા શું છે?</p>
+    <label><input type="radio" name="q9" value="a"> a) યેન</label>
+    <label><input type="radio" name="q9" value="b"> b) ડોલર</label>
+    <label><input type="radio" name="q9" value="c"> c) રૂપિયા</label>
+
+    <p>10. આપણે જીવંત રહેવા માટે શ્વાસમાં કઈ વાયુ લઈએ છીએ?</p>
+    <label><input type="radio" name="q10" value="a"> a) કાર્બન ડાયોક્સાઇડ</label>
+    <label><input type="radio" name="q10" value="b"> b) ઑક્સિજન</label>
+    <label><input type="radio" name="q10" value="c"> c) હાઇડ્રોજન</label>
+
+  </div>
+
+
+  
+
+
+  <br><br>
+  <button type="button" onclick="calculateIQ()" class="mainbtn">Submit Answers</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function calculateIQ() {
+      let correctAnswers = 0;
+
+      // Check each question and increment correctAnswers if the answer is correct
+      if (document.getElementById('mcqForm').q1.value === 'a') correctAnswers++;
+      if (document.getElementById('mcqForm').q2.value === 'c') correctAnswers++;
+      if (document.getElementById('mcqForm').q3.value === 'b') correctAnswers++;
+      if (document.getElementById('mcqForm').q4.value === 'a') correctAnswers++;
+      if (document.getElementById('mcqForm').q5.value === 'a') correctAnswers++;
+      if (document.getElementById('mcqForm').q6.value === 'b') correctAnswers++;
+      if (document.getElementById('mcqForm').q7.value === 'b') correctAnswers++;
+      if (document.getElementById('mcqForm').q8.value === 'b') correctAnswers++;
+      if (document.getElementById('mcqForm').q9.value === 'a') correctAnswers++;
+      if (document.getElementById('mcqForm').q10.value === 'b') correctAnswers++;
+
+      // Calculate IQ level based on correct answers
+      let iqLevel = (correctAnswers / 20) * 100;
+
+      // Display the result
+      let resultElement = document.getElementById('result');
+      resultElement.innerHTML = window.location.href = ("thankyou.html")
+
+
+
+      alert(`You answered ${correctAnswers} out of 20 questions correctly.\nYour IQ level is ${iqLevel.toFixed(2)}.`);
+    }
+  </script>
+
+</body>
+
+</html>

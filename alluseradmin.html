@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Visitor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #e4eaf1);
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      color: #2f3e46;
+      margin-bottom: 25px;
+      font-size: 2rem;
+    }
+
+    form {
+      max-width: 450px;
+      width: 100%;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #444;
+      align-self: flex-start;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      transition: 0.3s border ease;
+    }
+
+    input:focus {
+      border-color: #28a745;
+      outline: none;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background: #218838;
+    }
+
+    #log {
+      margin-top: 40px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .entry {
+      background: #ffffff;
+      border-left: 6px solid #28a745;
+      padding: 16px 20px;
+      margin: 12px 0;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .entry:hover {
+      transform: scale(1.01);
+    }
+
+    .entry span {
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .entry button {
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .entry button:hover {
+      background-color: #c82333;
+    }
+
+    @media (max-width: 600px) {
+      form, #log {
+        width: 90%;
+      }
+
+      .entry {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Admin Panel - Visitor Log</h2>
+
+  <form id="visitorForm">
+    <label for="name">Enter visitor name:</label>
+    <input type="text" id="name" required placeholder="Visitor Name" />
+    <button type="submit">Add Visitor</button>
+  </form>
+
+  <div id="log"></div>
+
+  <script>
+    const form = document.getElementById('visitorForm');
+    const log = document.getElementById('log');
+
+    function formatDateTime(date) {
+      return date.toLocaleString();
+    }
+
+    function displayEntries() {
+      log.innerHTML = '';
+      const visitors = JSON.parse(localStorage.getItem('visitors') || '[]').reverse();
+      visitors.forEach((visitor, index) => {
+        const entry = document.createElement('div');
+        entry.className = 'entry';
+        entry.innerHTML = `
+          <span>${visitor.name} visited at ${visitor.dateTime}</span>
+          <button onclick="deleteEntry(${visitors.length - 1 - index})">Delete</button>
+        `;
+        log.appendChild(entry);
+      });
+    }
+
+    function deleteEntry(index) {
+      let visitors = JSON.parse(localStorage.getItem('visitors') || '[]');
+      visitors.splice(index, 1);
+      localStorage.setItem('visitors', JSON.stringify(visitors));
+      displayEntries();
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      if (!name) return;
+
+      const dateTime = formatDateTime(new Date());
+      let visitors = JSON.parse(localStorage.getItem('visitors') || '[]');
+      visitors.push({ name, dateTime });
+      localStorage.setItem('visitors', JSON.stringify(visitors));
+
+      form.reset();
+      displayEntries();
+    });
+
+    window.addEventListener('DOMContentLoaded', displayEntries);
+    window.deleteEntry = deleteEntry;
+  </script>
+</body>
+</html>

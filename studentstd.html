@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fees Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            padding: 60px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 600;
+            text-align: center;
+            background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+        }
+
+        a::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 40%);
+            transform: rotate(45deg);
+            transition: 0.6s;
+        }
+
+        a:hover::before {
+            top: -25%;
+            left: -25%;
+        }
+
+        a:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        a:hover p {
+            color: #000;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        p {
+            z-index: 1;
+            position: relative;
+            font-size: 24px;
+            transition: 0.5s;
+        }
+
+        @media(max-width: 600px) {
+            a {
+                padding: 40px 10px;
+                font-size: 18px;
+            }
+            p {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="feesentry.html"><p>Std 1</p></a>
+        <a href="feesentry.html"><p>Std 2</p></a>
+        <a href="feesentry.html"><p>Std 3</p></a>
+        <a href="feesentry.html"><p>Std 4</p></a>
+        <a href="feesentry.html"><p>Std 5</p></a>
+        <a href="feesentry.html"><p>Std 6</p></a>
+        <a href="fees2.html"><p>Std 7</p></a>
+        <a href="fees2.html"><p>Std 8</p></a>
+        <a href="fees2.html"><p>Std 9</p></a>
+        <a href="fees2.html"><p>Std 10</p></a>
+        <a href="fees2.html"><p>Std 11</p></a>
+        <a href="12stdlist.html"><p>Std 12</p></a>
+        <a href="fees2.html"><p>Computer Class</p></a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Tuition Screenshots</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .form-container {
+      margin: 20px auto;
+      max-width: 500px;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input,
+    button {
+      padding: 12px;
+      width: 100%;
+      font-size: 1rem;
+      margin-top: 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    button:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+
+    .img-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .img-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .img-box:hover img {
+      transform: scale(1.03);
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 0, 0, 0.8);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .delete-btn:hover {
+      background: rgba(255, 0, 0, 1);
+    }
+
+    @media (max-width: 600px) {
+      input,
+      button {
+        width: 95%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>Admin - tution Galary image </h1>
+
+  <div class="form-container">
+    <input type="text" id="imgUrl" placeholder="Paste Image Address here" />
+    <button onclick="addImage()">Add Image</button>
+  </div>
+
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    const galleryEl = document.getElementById('gallery');
+
+    function loadImages() {
+      galleryEl.innerHTML = '';
+      const images = JSON.parse(localStorage.getItem('tuitionImages') || '[]');
+      images.forEach((url, index) => {
+        const box = document.createElement('div');
+        box.className = 'img-box';
+        box.innerHTML = `
+          <img src="${url}" alt="Screenshot" />
+          <button class="delete-btn" onclick="deleteImage(${index})">Delete</button>
+        `;
+        galleryEl.appendChild(box);
+      });
+    }
+
+    function addImage() {
+      const url = document.getElementById('imgUrl').value.trim();
+      if (!url) return;
+      let images = JSON.parse(localStorage.getItem('tuitionImages') || '[]');
+      images.push(url);
+      localStorage.setItem('tuitionImages', JSON.stringify(images));
+      document.getElementById('imgUrl').value = '';
+      loadImages();
+    }
+
+    function deleteImage(index) {
+      let images = JSON.parse(localStorage.getItem('tuitionImages') || '[]');
+      images.splice(index, 1);
+      localStorage.setItem('tuitionImages', JSON.stringify(images));
+      loadImages();
+    }
+
+    window.addEventListener('DOMContentLoaded', loadImages);
+  </script>
+
+</body>
+
+</html>

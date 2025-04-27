@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fees Deposit Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1527181152855-fc03fc7949c8?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    h2 {
+      color: white;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      color: white;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 15px;
+      margin-top: 5px;
+      transition: 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      box-shadow: 0 0 10px #00f2ff;
+    }
+
+    .submit,
+    .reset {
+      width: 48%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00f2ff, #5ce1e6);
+      color: black;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit:hover,
+    .reset:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00f2ff;
+      background: linear-gradient(135deg, #5ce1e6, #00f2ff);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      h2 {
+        font-size: 24px;
+      }
+
+      form {
+        padding: 20px;
+      }
+
+      .submit,
+      .reset {
+        width: 100%;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Fees Deposit Form</h2>
+
+  <form name="submit-to-google-sheet" method="post" autocomplete="on">
+    <label for="fees">Fees Deposit Date:</label>
+    <input type="date" id="date" name="Fees deposite date" required />
+
+    <label for="time">Current Time:</label>
+    <input type="time" id="time" name="Current time" required />
+
+    <label for="pname">Parent's Name:</label>
+    <input type="text" id="pname" name="Perents Name" placeholder="Enter parent's name" required />
+
+    <label for="sname">Student Name:</label>
+    <input type="text" id="sname" name="Student name" placeholder="Enter student name" required />
+
+    <label for="std">Standard:</label>
+    <input type="number" id="std" name="Std" placeholder="Enter standard" required />
+
+    <label for="sir name">Sir Name:</label>
+    <input type="text" id="sir name" name="Sir name" placeholder="Enter sir name" required />
+
+    <label for="ammount">Amount:</label>
+    <input type="number" id="ammount" name="Ammount" placeholder="Enter amount" required />
+
+    <label for="clocation">Collection Location:</label>
+    <input type="text" id="clocation" name="Collaction location" placeholder="Enter location" required />
+
+    <div class="buttons">
+      <input type="submit" value="Submit" class="submit" onclick="myfunction()" />
+      <input type="reset" value="Reset" class="reset" />
+    </div>
+  </form>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzlwPI4DDC2AiZmRCNx1YoAvgNPd9L5VreZeQ8RmJs3feFrq0CBZpTfL9T-OoQdisOvqw/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => alert('Form submitted successfully!'))
+        .catch(error => alert('Error! Try again.'));
+      form.reset();
+    });
+  </script>
+</body>
+
+</html>

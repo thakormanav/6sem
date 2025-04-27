@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12th Students List</title>
+    <style>
+        body {
+            background: linear-gradient(120deg, #84fab0, #8fd3f4);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .student-list {
+            width: 100%;
+            max-width: 650px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .student {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #f5f7fa, #c3cfe2);
+            margin: 12px 0;
+            padding: 15px 25px;
+            border-radius: 10px;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .student:hover {
+            background: linear-gradient(90deg, #e0eafc, #cfdef3);
+            border-color: #4f8cf7;
+            transform: scale(1.03);
+        }
+
+        .student-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #222;
+            text-align: left;
+        }
+
+        .action-btn {
+            padding: 8px 18px;
+            background: #4f8cf7;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #306fd0;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .student {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .action-btn {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="student-list">
+        <h2>12th Students</h2>
+        <div class="student">
+            <div class="student-name">Manish Prajapati</div>
+          <a href="manishalladmin.html"><button class="action-btn">View</button></a>
+        </div>
+        <div class="student">
+            <div class="student-name">Richa Patel</div>
+            <button class="action-btn">View</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

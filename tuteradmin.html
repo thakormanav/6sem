@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Tutor Manager</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form input {
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border 0.3s ease;
+    }
+
+    .form input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .form button {
+      padding: 12px 20px;
+      background: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .form button:hover {
+      background: #218838;
+      transform: scale(1.05);
+    }
+
+    .tutor-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+    }
+
+    .tutor-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .tutor-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #28a745;
+      transition: transform 0.2s ease;
+    }
+
+    .tutor-img:hover {
+      transform: scale(1.1);
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .info h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .info p {
+      margin: 4px 0;
+      color: #666;
+      font-size: 1rem;
+    }
+
+    .info p strong {
+      color: #28a745;
+    }
+
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .delete-btn:hover {
+      background: #c82333;
+      transform: scale(1.05);
+    }
+
+    /* Responsive Styling */
+    @media screen and (max-width: 768px) {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .form {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .tutor-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .tutor-img {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Admin Panel - Manage Tutors</h2>
+
+  <div class="form">
+    <input type="text" id="name" placeholder="Tutor Name" />
+    <input type="text" id="subject" placeholder="Subject" />
+    <input type="text" id="email" placeholder="Email" />
+    <input type="text" id="imgUrl" placeholder="Image URL (e.g. https://...)" />
+    <button onclick="addTutor()">Add Tutor</button>
+  </div>
+
+  <div id="tutorList"></div>
+
+  <script>
+    function loadTutors() {
+      const list = document.getElementById('tutorList');
+      list.innerHTML = '';
+      const tutors = JSON.parse(localStorage.getItem('tutors') || '[]');
+      tutors.forEach((tutor, index) => {
+        const card = document.createElement('div');
+        card.className = 'tutor-card';
+        card.innerHTML = `
+          <img src="${tutor.img}" alt="${tutor.name}" class="tutor-img" />
+          <div class="info">
+            <h3>${tutor.name}</h3>
+            <p><strong>Subject:</strong> ${tutor.subject}</p>
+            <p><strong>Email:</strong> ${tutor.email}</p>
+          </div>
+          <button class="delete-btn" onclick="deleteTutor(${index})">Delete</button>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function addTutor() {
+      const name = document.getElementById('name').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const img = document.getElementById('imgUrl').value.trim();
+
+      if (!name || !subject || !email || !img) return;
+
+      const tutors = JSON.parse(localStorage.getItem('tutors') || '[]');
+      tutors.push({ name, subject, email, img });
+      localStorage.setItem('tutors', JSON.stringify(tutors));
+      loadTutors();
+
+      document.getElementById('name').value = '';
+      document.getElementById('subject').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('imgUrl').value = '';
+    }
+
+    function deleteTutor(index) {
+      const tutors = JSON.parse(localStorage.getItem('tutors') || '[]');
+      tutors.splice(index, 1);
+      localStorage.setItem('tutors', JSON.stringify(tutors));
+      loadTutors();
+    }
+
+    window.onload = loadTutors;
+  </script>
+
+</body>
+</html>

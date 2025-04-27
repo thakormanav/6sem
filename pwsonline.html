@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      backdrop-filter: blur(8px);
+      background-image:url(https://lh3.googleusercontent.com/p/AF1QipMQU_F1ZbhgIcYss-DJK0KjfghPoVztObZGcvcw=s1360-w1360-h1020) ;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      
+  }
+   
+
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      padding: 40px;
+      width: 350px;
+      color: rgb(0, 0, 0);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 16px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 10px #00f2ff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #00f2ff, #5ce1e6);
+      color: black;
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00f2ff;
+      background: linear-gradient(135deg, #5ce1e6, #00f2ff);
+    }
+
+  </style>
+</head>
+<body>
+
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="button" onclick="login()">Login</button>
+  </form>
+
+  <script>
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      if (username === "" || password === "") {
+        alert("Please enter both username and password.");
+        return;
+      }
+
+      if (username === "online" && password === "123") {
+        window.location.href = "onlineexameng.html";
+      } else {
+        alert("Invalid username or password. Please try again.");
+      }
+    }
+  </script>
+
+</body>
+</html>
